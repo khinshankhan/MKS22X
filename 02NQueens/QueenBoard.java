@@ -1,9 +1,15 @@
 public class QueenBoard{
     private int[][]board;
-    private int solutionCount;
+    private int solutionCount,size;
     
     public QueenBoard(int size){
 	board = new int[size][size];
+	this.size=size;
+	for(int r=0; r<size;r++){
+	    for(int c=0; c<size;c++)
+		board[r][c]=0;
+	}
+	solutionCount=0;
     }
 
     /**
@@ -15,8 +21,7 @@ public class QueenBoard{
      *final configuration of the board after adding 
      *all n queens. Uses solveH
      */
-    public boolean solve()
-    {
+    public boolean solve(){
 	return solveH(0);
     }
 
@@ -29,7 +34,9 @@ public class QueenBoard{
      *The board should be reset after this is run.    
      */
     public int getSolutionCount(){
-    	return -1;
+	int a= (solutionCount > 0) ? solutionCount : -1;
+	solutionCount=0;
+    	return a;
     }
     /**toString
      *and all nunbers that represent queens are replaced with 'Q' 
