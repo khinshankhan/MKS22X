@@ -38,11 +38,22 @@ public class QueenBoard{
 	solutionCount=0;
     	return a;
     }
+
+    private void diag1(int r, int c){
+	while(r!=0){
+	    r++;
+	    c++;
+	    board[r][c]+=1;
+	}
+    }
+
     /**toString
      *and all nunbers that represent queens are replaced with 'Q' 
      *all others are displayed as underscores '_'
      */
     public String toString(){
+	for(int r=0; r<size;r++){
+	    for(int c=0;c<size;c++){
     	return "";
     }
 }
