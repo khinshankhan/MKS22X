@@ -52,8 +52,31 @@ public class QueenBoard{
      *all others are displayed as underscores '_'
      */
     public String toString(){
+	/*
+  public static String toString(int[][]board, int size){
+	String s="";
 	for(int r=0; r<size;r++){
 	    for(int c=0;c<size;c++){
-    	return "";
+	        s+=((board[r][c]==-1) ? "Q" : "_");
+		s+=((c==size-1) ? "\n" : "");
+	    }
+	}
+    return s;
+    }
+  public static void main(String[] args)
+  {
+    int size=4;
+    int[][]board=new int[][]{{ 1, -1, 1, 1},{ 1, 3, 5, -1},{ -1, 0, 7, 8},{ 0, 0, -1, 9}};
+    System.out.print(toString(board,size));
+  }
+	*/
+	String s="";
+	for(int r=0; r<size;r++){
+	    for(int c=0;c<size;c++){
+	        s+=((board[r][c]==-1) ? "Q" : "_");
+		s+=((c==size-1) ? "\n" : "");
+	    }
+	}
+	return s;
     }
 }
