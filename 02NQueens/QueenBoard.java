@@ -152,7 +152,7 @@ public class QueenBoard{
 	String s="";
 	for(int r=0; r<size;r++){
 	    for(int c=0;c<size;c++){
-	        s+=((board[r][c]==-1) ? "Q" : "_");
+	        s+=((board[r][c]==-1) ? "Q " : "_ ");
 		s+=((c==size-1) ? "\n" : "");
 	    }
 	}
