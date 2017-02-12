@@ -4,12 +4,14 @@ public class QueenBoard{
     
     public QueenBoard(int size){
 	board = new int[size][size];
-	this.size=size;
+	this.size=size;//could use board.length but that's typing, lol i forgot i made this :')
+	/*EXTRA, board is filled with 0s already
 	for(int r=0; r<size;r++){
 	    for(int c=0; c<size;c++)
 		board[r][c]=0;
 	}
-	solutionCount=0;
+	*/
+	solutionCount=0;//also extra, but might as well
     }
 
     /**
@@ -24,9 +26,36 @@ public class QueenBoard{
     public boolean solve(){
 	return solveH(0);
     }
-
+    
     private boolean solveH(int col){
 	return false;
+    }
+
+    private void invalidator(int r, int c){
+	//horizontal right
+	for(int co=c; co<board.length; co++)
+	    board [r][co]+=1;
+	//vertical down
+	for(int ro=r; ro<board.length; ro++)
+	    board[ro][c]+=1;
+	//horizontal left
+	for(int co=c; co>=0; co--)
+	    board[r][co]+=1;
+	//vertical up
+	for(int ro=r; ro>=0; ro--)
+	    board[ro][c]+=1;
+	//VIO DIAGS
+        for(int ro=r, co=c; ro>=0&&co>=0; ro--, co--)
+	    board[ro][co]+=1;
+	for(int ro=r, co=c; ro<board.length&&co<board.length; ro++, co++)
+	    board[ro][co]+=1;
+	for(int ro=r, co=c; ro>=0&&co<board.length; ro--, co++)
+	    board[ro][co]+=1;
+	for(int ro=r, co=c; ro<board.length&&co>=0; ro++, co--)
+	    board[ro][co]+=1;
+	//re places queen in position
+	board[r][c]=-1;
+	
     }
 
     /**
@@ -37,14 +66,6 @@ public class QueenBoard{
 	int a= (solutionCount > 0) ? solutionCount : -1;
 	solutionCount=0;
     	return a;
-    }
-
-    private void diag1(int r, int c){
-	while(r!=0){
-	    r++;
-	    c++;
-	    board[r][c]+=1;
-	}
     }
 
     /**toString
