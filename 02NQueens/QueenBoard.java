@@ -24,16 +24,17 @@ public class QueenBoard{
      *all n queens. Uses solveH
      */
     public boolean solve(){
-	if(size<4)
+	if(size<1||size>1&&size<4)
 	    return false;
 	return solveH(0);
     }
     
     private boolean solveH(int col){
+	//base case
+	if (col >= size){
+	    return true;
+	}
 	for(int r=0; r<size; r++){
-	    //base case
-	    if (col >= size)
-		return true;
 	    if(valid(r,col)){
 		setQueen(r,col);
 		if(solveH(col + 1)){
