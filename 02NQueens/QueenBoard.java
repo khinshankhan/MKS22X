@@ -3,6 +3,10 @@ public class QueenBoard{
     private int solutionCount,size;
     
     public QueenBoard(int size){
+	if(size<0){
+	    System.out.println("Negative length boards don't exist.");
+	    return;
+	}
 	board = new int[size][size];
 	this.size=size;//could use board.length but that's typing, lol i forgot i made this :')
 	/*EXTRA, board is filled with 0s already
@@ -23,10 +27,9 @@ public class QueenBoard{
      *final configuration of the board after adding 
      *all n queens. Uses solveH
      */
-    public boolean solve(){
-	if(size<1||size>1&&size<4)
-	    return false;
-	return solveH(0);
+    public void solve(){
+	solveH(0);
+	return;
     }
     
     private boolean solveH(int col){
@@ -125,6 +128,13 @@ public class QueenBoard{
 	int a= (solutionCount > 0) ? solutionCount : -1;
 	solutionCount=0;
     	return a;
+    }
+    public int getCount(){
+        return getSolutionCount();
+    }
+    public void countSolutions(){
+	getSolutionCount();
+	return;
     }
 
     /**toString
