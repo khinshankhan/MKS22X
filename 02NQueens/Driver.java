@@ -1,16 +1,16 @@
 public class Driver{
     public static void main(String[]args){
-	QueenBoard a= new QueenBoard(0);
+	QueenBoard a= new QueenBoard(-5);
 	a.solve();
 	System.out.println(a.getSolutionCount());
 	System.out.println(a.toString());
 	
-	QueenBoard b= new QueenBoard(1);
+	QueenBoard b= new QueenBoard(0);
 	b.solve();
 	System.out.println(b.getSolutionCount());
 	System.out.println(b.toString());
 
-	QueenBoard c= new QueenBoard(2);
+	QueenBoard c= new QueenBoard(1);
 	System.out.println(c.getSolutionCount());
 	c.solve();
 	System.out.println(c.toString());
@@ -30,7 +30,7 @@ public class Driver{
 	System.out.println(f.getSolutionCount());
 	System.out.println(f.toString());
 
-	QueenBoard g= new QueenBoard(6);
+	QueenBoard g= new QueenBoard(8);
 	g.solve();
 	System.out.println(g.getSolutionCount());
 	System.out.println(g.toString());
