@@ -125,6 +125,8 @@ public class QueenBoard{
      *The board should be reset after this is run.    
      */
     public int getSolutionCount(){
+	clear();
+	solveC(0);
 	int a= (solutionCount > 0) ? solutionCount : -1;
 	solutionCount=0;
     	return a;
@@ -135,6 +137,28 @@ public class QueenBoard{
     public void countSolutions(){
 	getSolutionCount();
 	return;
+    }
+    private void solveC(int col){
+	//base case
+	if (col == size){
+	    solutionCount++;
+	    return;
+	}
+	for(int r=0; r<size; r++){
+	    if(valid(r,col)){
+		setQueen(r,col);
+		solveC(col+1);
+		remQueen(r,col);
+		
+	    }
+	}
+	return;
+    }
+    private void clear(){
+	for(int r=0; r<size;r++){
+	    for(int c=0; c<size;c++)
+		board[r][c]=0;
+	}
     }
 
     /**toString

@@ -30,7 +30,7 @@ public class Driver{
 	System.out.println(f.getSolutionCount());
 	System.out.println(f.toString());
 
-	QueenBoard g= new QueenBoard(8);
+	QueenBoard g= new QueenBoard(10);
 	g.solve();
 	System.out.println(g.getSolutionCount());
 	System.out.println(g.toString());
