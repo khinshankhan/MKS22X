@@ -3,18 +3,12 @@ public class QueenBoard{
     private int solutionCount,size;
     
     public QueenBoard(int size){
+	this.size=size;//could use board.length but that's typing, lol i forgot i made this :')
 	if(size<0){
 	    System.out.println("Negative length boards don't exist.");
 	    return;
 	}
 	board = new int[size][size];
-	this.size=size;//could use board.length but that's typing, lol i forgot i made this :')
-	/*EXTRA, board is filled with 0s already
-	for(int r=0; r<size;r++){
-	    for(int c=0; c<size;c++)
-		board[r][c]=0;
-	}
-	*/
 	solutionCount=0;//also extra, but might as well
     }
 
@@ -125,19 +119,20 @@ public class QueenBoard{
      *The board should be reset after this is run.    
      */
     public int getSolutionCount(){
-	clear();
-	solveC(0);
-	int a= (solutionCount > 0) ? solutionCount : -1;
-	solutionCount=0;
-    	return a;
-    }
-    public int getCount(){
-        return getSolutionCount();
+	int a= (solutionCount >= 0) ? solutionCount : -1;
+	if(size<0)
+	    a=-1;
+	return a;
     }
     public void countSolutions(){
-	getSolutionCount();
-	return;
+        clear();
+	solveC(0);
+	int a= (solutionCount > 0) ? solutionCount : -1;
+	if(size==2||size==3)
+	    a=0;
+	solutionCount=a;
     }
+    
     private void solveC(int col){
 	//base case
 	if (col == size){
@@ -148,12 +143,12 @@ public class QueenBoard{
 	    if(valid(r,col)){
 		setQueen(r,col);
 		solveC(col+1);
-		remQueen(r,col);
-		
+		remQueen(r,col);	
 	    }
 	}
 	return;
     }
+    
     private void clear(){
 	for(int r=0; r<size;r++){
 	    for(int c=0; c<size;c++)
