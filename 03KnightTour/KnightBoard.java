@@ -2,13 +2,14 @@ public class KnightBoard{
     private int[][]board;
     int sr;
     int sc;
-    boolean solve;
+    //helps with string
+    boolean solver=false;
 
+    //constructor
     public KnightBoard(int startingRows,int startingCols){
 	sr=startingRows;
 	sc=startingCols;
         board = new int[sr][sc];
-	solve=false;
     }
 
     //blank if you never called solve or when there is no solution
@@ -22,51 +23,97 @@ public class KnightBoard{
 	}
 	return s;
     }
-
+    
+    //will solve or clear board from work
     public void solve(){
-        solveH(0,0,1);
-
+	solveH(0,0,1);
+	if(!solver)
+	    clear();
     } 
 
     // level is the # of the knight
-    private void solveH(int row ,int col, int level){
-	if (level > sr * sc)
-	    return ;
-	if (row < 0 || row > sr - 1 || col < 0 || col > sc - 1)
-	    return false;
-	if(board[col][row] == 0){
+    //the solve helper
+    private boolean solveH(int row ,int col, int level){
+	if (level > sr * sc){
+	    solver=true;
+	    return true;
+	}
+	if(preventL(row,col)&&board[row][col]<=0){
+	    board[row][col]=level;
 	    level+=1;
-	    board[col][row] = level;
-	    if(takeAnL(row,col,level)){
+	    if(takeAnL1(row,col,level)||takeAnL2(row,col,level)||takeAnL3(row,col,level)||takeAnL4(row,col,level))
 		return true;
-	    }
-	    else{
-		level-=1;
-		board[row][col]=0;
-	    }
+	    board[row][col] = 0;
 	}
 	return false;
     }
 
-    private boolean takeAnL(int r, int c, int L){
-	return (solveH(r+2, c+1, L) || 
-		solveH(r+1, c+2, L) || 
-		solveH(r-2, c-1, L) ||
-		solveH(r-1, c+2, L) || 
-		solveH(r-1, c-2, L) || 
-		solveH(r+2, c-1, L) ||
-		solveH(r-2, c+1, L) || 
-		solveH(r+1, c-2, L));
+    //these Ls are designed to make solutions take less time
+    //checks if off board and then solveH with mvmt
+    private boolean takeAnL1(int r, int c, int L){
+	if(solveH(r+2, c+1, L)||
+	   solveH(r+1, c+2, L))
+	    return true;
+	return false;
     }
 
+    private boolean takeAnL2(int r, int c, int L){
+	boolean s=false;
+	if(c-1>=0){
+	    if(solveH(r+2, c-1, L)){
+		return true;
+	    }else if(c-2>=0){
+		if(solveH(r+1, c-2, L)){
+		    return true;
+		}
+	    }
+	}
+	return s;
+    }
+    
+    private boolean takeAnL3(int r, int c, int L){
+	boolean s=false;
+	if(r-1>=0){
+	    if(solveH(r-1, c+2, L)){
+		return true;
+	    }else if(r-2>=0){
+		if(solveH(r-2, c+1, L)){
+		    return true;
+		}
+	    }
+	}
+	return s;
+    }
+
+    private boolean takeAnL4(int r, int c, int L){
+	boolean s=false;
+	if(r-1>=0&&c-2>=0){
+	    if(solveH(r-1, c-2, L))
+		return true;
+	}
+	if(r-2>=0&&c-1>=0){
+	    if(solveH(r-2, c-1, L))
+		return true;
+	}
+	return s;
+    }
+    
+    //So you dont go off board, in hindsight, maybe it would help to put this inside the other Ls
+    public boolean preventL(int r, int c){
+	return !(r >= sr || c >= sc);
+    }
+
+    //clears the board
     private void clear(){
 	for(int r=0; r<sr;r++){
 	    for(int c=0; c<sc;c++)
 		board[r][c]=0;
 	}
     }
+
+    //test method
     public static void main(String[] args){
-	KnightBoard a= new KnightBoard(5,5);
+	KnightBoard a= new KnightBoard(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 	a.solve();
 	System.out.println(a.toString());
     }
