@@ -110,11 +110,4 @@ public class KnightBoard{
 		board[r][c]=0;
 	}
     }
-
-    //test method
-    public static void main(String[] args){
-	KnightBoard a= new KnightBoard(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
-	a.solve();
-	System.out.println(a.toString());
-    }
 }
