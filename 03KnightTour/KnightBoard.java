@@ -38,7 +38,7 @@ public class KnightBoard{
 	    solver=true;
 	    return true;
 	}
-	if(preventL(row,col)&&board[row][col]<=0){
+	if(board[row][col]<=0){
 	    board[row][col]=level;
 	    level+=1;
 	    if(takeAnL1(row,col,level)||takeAnL2(row,col,level)||takeAnL3(row,col,level)||takeAnL4(row,col,level))
@@ -51,38 +51,39 @@ public class KnightBoard{
     //these Ls are designed to make solutions take less time
     //checks if off board and then solveH with mvmt
     private boolean takeAnL1(int r, int c, int L){
-	if(solveH(r+2, c+1, L)||
-	   solveH(r+1, c+2, L))
+	if(r+1<sr&&c+2<sc){
+	    if(solveH(r+1, c+2, L))
 	    return true;
+	}
+	if(r+2<sr&&c+1<sc){
+	    if(solveH(r+2, c+1, L))
+	    return true;
+	}
 	return false;
     }
 
     private boolean takeAnL2(int r, int c, int L){
-	boolean s=false;
-	if(c-1>=0){
-	    if(solveH(r+2, c-1, L)){
+	if(c-1>=0&&r+2<sr){
+	    if(solveH(r+2, c-1, L))
 		return true;
-	    }else if(c-2>=0){
-		if(solveH(r+1, c-2, L)){
-		    return true;
-		}
-	    }
 	}
-	return s;
+	if(c-2>=0&&r+1<sr){
+	    if(solveH(r+1, c-2, L))
+		return true;
+	}
+	return false;
     }
     
     private boolean takeAnL3(int r, int c, int L){
-	boolean s=false;
-	if(r-1>=0){
-	    if(solveH(r-1, c+2, L)){
+	if(r-1>=0&&c+2<sc){
+	    if(solveH(r-1, c+2, L))
 		return true;
-	    }else if(r-2>=0){
-		if(solveH(r-2, c+1, L)){
-		    return true;
-		}
-	    }
 	}
-	return s;
+	if(r-2>=0&&c+1<sc){
+	    if(solveH(r-2, c+1, L))
+		return true;
+	}
+	return false;
     }
 
     private boolean takeAnL4(int r, int c, int L){
