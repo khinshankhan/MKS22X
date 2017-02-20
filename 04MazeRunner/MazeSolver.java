@@ -10,12 +10,13 @@ public class MazeSolver{
     public static final String ansiRed = "\u001B[41m";
     public static final String ansiGreen = "\u001B[42m";
     public static final String ansiReset = "\u001B[0m";
-
+    
     String board="";
     String formatted="";
     int row=1;
     int col=0;
     char[][]ary;
+    int x,y;
     
 
     public MazeSolver(String name){
@@ -28,6 +29,8 @@ public class MazeSolver{
 	//System.out.println(formatted);
 	clearAry();
 	constructAry();
+	//System.out.println(x+" "+y);
+	//ary[7][1]='L';
 	debugAry();
 	//formatAry();
     }
@@ -36,6 +39,10 @@ public class MazeSolver{
 	int r=0;
 	int c=0;
         for (int i = 0; i < board.length(); i++) {
+	    if(board.charAt(i)=='S'){
+		x=r;
+		y=c;
+	    }
 	    ary[r][c] =board.charAt(i);
 	    c++; 
 	    if ((i+1)% (ary[0].length) == 0) {
