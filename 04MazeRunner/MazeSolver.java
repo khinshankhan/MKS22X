@@ -22,17 +22,18 @@ public class MazeSolver{
         //System.out.println(row+" "+col);
 	//debugPrinter(name);
 	ary=new char[row][col];
+	System.out.println(board.length());
 	clearAry();
 	con();
     }
 
     public void con(){
-	int r=0;
+        int r=0;
 	int c=0;
         for (int i = 0; i < board.length(); i++) {
 	    ary[r][c] =board.charAt(i);
 	    c++; 
-	    if (i % ary[0].length == 0) {
+	    if (i % (ary[0].length - 1) == 0) {
 		r++; 
 		c = 0; 
 	    }
@@ -80,8 +81,15 @@ public class MazeSolver{
 	    while(inf.hasNextLine()){
 		String line = inf.nextLine();
 		row+=1;
-	        board+=line;
-		board+=("\n");
+	    }
+	    inf = new Scanner(infile);
+	    lineNumber = 1;
+	    while(inf.hasNextLine()){
+		String line = inf.nextLine();
+		for(int i=0; i<line.length(); i++){
+		    board+=line.charAt(i);
+		}
+	        board+=("\n");
 	    }
 	}catch(Exception e){
 	    System.out.println("Looks like the file doesn't exist. Create and try again.");
