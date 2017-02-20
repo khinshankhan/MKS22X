@@ -12,6 +12,7 @@ public class MazeSolver{
     public static final String ansiReset = "\u001B[0m";
 
     String board="";
+    String formatted="";
     int row=1;
     int col=0;
     char[][]ary;
@@ -22,30 +23,49 @@ public class MazeSolver{
         //System.out.println(row+" "+col);
 	//debugPrinter(name);
 	ary=new char[row][col];
-	System.out.println(board.length());
-	System.out.println(board);
+	//System.out.println(board.length());
+	//System.out.println(board);
+	//System.out.println(formatted);
 	clearAry();
-	con();
+	constructAry();
+	debugAry();
+	//formatAry();
     }
 
-    public void con(){
+    public void constructAry(){
 	int r=0;
 	int c=0;
         for (int i = 0; i < board.length(); i++) {
 	    ary[r][c] =board.charAt(i);
 	    c++; 
-	    if (i % (ary[0].length - 1) == 0) {
+	    if ((i+1)% (ary[0].length) == 0) {
 		r++; 
 		c = 0; 
 	    }
 	}
-	
-	for(int i=0; i<ary.length; i++){
+    }
+
+    public void debugAry(){
+        for(int i=0; i<ary.length; i++){
 	    for(int j=0; j<ary[i].length; j++)
 		System.out.print(ary[i][j]);
 	    System.out.println("");
 	}
     }
+
+    public void formatAry(){
+	for(int i=0; i<ary.length; i++){
+	    for(int j=0; j<ary[i].length; j++){
+		if(ary[i][j]=='#'){
+		    System.out.print(ansiRed+" "+ansiReset);
+		}else{
+		    System.out.print(ary[i][j]);
+		}
+	    }
+	    System.out.println("");
+	}
+    }
+    
     private void clearAry(){
 	for(int r=0; r<ary.length;r++){
 	    for(int c=0; c<ary[r].length;c++)
@@ -84,10 +104,16 @@ public class MazeSolver{
 		String line = inf.nextLine();
 		row+=1;
 	    }
-	    Scanner scanner = new Scanner( new File(filename) );
-	    String text = scanner.useDelimiter("\\A").next();
-	    scanner.close(); 
-	    board=text;
+	    inf = new Scanner(infile);
+	    lineNumber = 1;
+	    while(inf.hasNextLine()){
+		String line = inf.nextLine();
+		for(int i=0; i<line.length(); i++){
+		    board+=line.charAt(i);
+		    formatted+=line.charAt(i);
+		}
+		formatted+="\n";
+	    }
 	}catch(Exception e){
 	    System.out.println("Looks like the file doesn't exist. Create and try again.");
 	}
