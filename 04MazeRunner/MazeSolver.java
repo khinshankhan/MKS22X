@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.Arrays;
 
 
 public class MazeSolver{
@@ -30,14 +29,13 @@ public class MazeSolver{
 	//System.out.println(board.length());
 	//System.out.println(board);
 	//System.out.println(formatted);
-	clearAry();
+	//clearAry();
 	constructAry();
 	//System.out.println(x+" "+y);
 	//ary[7][1]='L';
 	startx=x;
 	starty=y;
-	solve();
-	formatAry();
+	//solve();
 	//formatAry();
     }
 
@@ -187,11 +185,33 @@ public class MazeSolver{
 	return false;
     }
 
-    public static void main(String args[]){
-	try{
-	    MazeSolver a= new MazeSolver(args[0]);
-	}catch(Exception e){
-	    MazeSolver a= new MazeSolver("Maze1.txt");
+    public String toString(){
+	String s="";
+	for(int i=0; i<ary.length; i++){
+	    for(int j=0; j<ary[i].length; j++){
+		if(ary[i][j]=='#'){
+		    s+=(ansiRed+" "+ansiReset);
+		}else if(ary[i][j]=='.'){
+		    s+=(ansiGreen+" "+ansiReset);
+		}else if(ary[i][j]=='S'||ary[i][j]=='E'){
+		    s+=(ansiCyanBack+ary[i][j]+ansiReset);
+		}else{
+		    s+=(ary[i][j]);
+		}
+	    }
+	    s+=("\n");
 	}
+	return s;
+    }
+
+    public static void main(String args[]){
+	MazeSolver a;
+	try{
+	    a= new MazeSolver(args[0]);
+	}catch(Exception e){
+	    a= new MazeSolver("Maze1.txt");
+	}
+	a.solve();
+	System.out.println(a);
     }
 }
