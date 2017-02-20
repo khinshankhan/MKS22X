@@ -39,7 +39,7 @@ public class MazeSolver{
 	//formatAry();
     }
 
-    public void constructAry(){
+    private void constructAry(){
 	int r=0;
 	int c=0;
         for (int i = 0; i < board.length(); i++) {
@@ -56,7 +56,7 @@ public class MazeSolver{
 	}
     }
 
-    public void debugAry(){
+    private void debugAry(){
         for(int i=0; i<ary.length; i++){
 	    for(int j=0; j<ary[i].length; j++)
 		System.out.print(ary[i][j]);
@@ -64,7 +64,7 @@ public class MazeSolver{
 	}
     }
 
-    public void formatAry(){
+    private void formatAry(){
 	for(int i=0; i<ary.length; i++){
 	    for(int j=0; j<ary[i].length; j++){
 		if(ary[i][j]=='#'){
@@ -88,7 +88,7 @@ public class MazeSolver{
 	}
     }
 
-    public void debugPrinterFromFile(String filename){
+    private void debugPrinterFromFile(String filename){
 	try{
 	    File infile = new File(filename);// can be a path"/full/path/to/file.txt" 
 	    Scanner inf = new Scanner(infile);
@@ -109,7 +109,7 @@ public class MazeSolver{
 	}
     }
 
-    public void add(String filename){
+    private void add(String filename){
 	try{
 	    File infile = new File(filename);// can be a path"/full/path/to/file.txt" 
 	    Scanner inf = new Scanner(infile);
@@ -134,7 +134,7 @@ public class MazeSolver{
 	}
     }
 
-    public String stringFromString(){
+    private String stringFromString(){
 	String s="";
 	for(int i=0; i<col; i++){
 	    if('#'==board.charAt(i)){
@@ -151,7 +151,7 @@ public class MazeSolver{
 	ary[startx][starty]='S';
     }
 
-    public boolean solveH(int x, int y){
+    private boolean solveH(int x, int y){
 	//End base case
 	if (ary[x][y] == 'E')
 	    return true;
@@ -168,15 +168,15 @@ public class MazeSolver{
 	    return true;
 	//up
 	went=solveH(x-1, y);
-	if (went   )
+	if (went)
 	    return true;
 	//left
 	went=solveH(x, y-1);
-	if (went   )
+	if (went)
 	    return true;		
 	//down
 	went=solveH(x+1, y);
-	if (went   )
+	if (went)
 	    return true;
 	//couldnt go
 	ary[x][y] = ' ';
