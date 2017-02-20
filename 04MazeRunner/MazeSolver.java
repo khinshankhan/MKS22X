@@ -9,6 +9,7 @@ public class MazeSolver{
     //http://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
     public static final String ansiRed = "\u001B[41m";
     public static final String ansiGreen = "\u001B[42m";
+    public static final String ansiCyanBack = "\u001B[46m";
     public static final String ansiReset = "\u001B[0m";
     
     String board="";
@@ -17,12 +18,14 @@ public class MazeSolver{
     int col=0;
     char[][]ary;
     int x,y;
+    //for reset
+    int startx, starty;
     
 
     public MazeSolver(String name){
 	add(name);
         //System.out.println(row+" "+col);
-	//debugPrinter(name);
+	//debugPrinterFromFile(name);
 	ary=new char[row][col];
 	//System.out.println(board.length());
 	//System.out.println(board);
@@ -31,7 +34,10 @@ public class MazeSolver{
 	constructAry();
 	//System.out.println(x+" "+y);
 	//ary[7][1]='L';
-	debugAry();
+	startx=x;
+	starty=y;
+	solve();
+	formatAry();
 	//formatAry();
     }
 
@@ -65,6 +71,10 @@ public class MazeSolver{
 	    for(int j=0; j<ary[i].length; j++){
 		if(ary[i][j]=='#'){
 		    System.out.print(ansiRed+" "+ansiReset);
+		}else if(ary[i][j]=='.'){
+		    System.out.print(ansiGreen+" "+ansiReset);
+		}else if(ary[i][j]=='S'||ary[i][j]=='E'){
+		    System.out.print(ansiCyanBack+ary[i][j]+ansiReset);
 		}else{
 		    System.out.print(ary[i][j]);
 		}
@@ -80,7 +90,7 @@ public class MazeSolver{
 	}
     }
 
-    public void debugPrinter(String filename){
+    public void debugPrinterFromFile(String filename){
 	try{
 	    File infile = new File(filename);// can be a path"/full/path/to/file.txt" 
 	    Scanner inf = new Scanner(infile);
@@ -126,7 +136,7 @@ public class MazeSolver{
 	}
     }
 
-    public String toString(){
+    public String stringFromString(){
 	String s="";
 	for(int i=0; i<col; i++){
 	    if('#'==board.charAt(i)){
@@ -136,6 +146,45 @@ public class MazeSolver{
 	    }
 	}
         return s;
+    }
+
+    public void solve(){
+	solveH(x,y);
+	ary[startx][starty]='S';
+    }
+
+    public boolean solveH(int x, int y){
+	//End base case
+	if (ary[x][y] == 'E')
+	    return true;
+	//wall or went there already
+	if (ary[x][y] == '#' || ary[x][y] == '.')
+	    return false;
+	//ark path i went
+	ary[x][y] = '.';
+	boolean went;
+
+	// right
+	went=solveH(x, y+1);
+	if (went)
+	    return true;
+	//up
+	went=solveH(x-1, y);
+	if (went   )
+	    return true;
+	//left
+	went=solveH(x, y-1);
+	if (went   )
+	    return true;		
+	//down
+	went=solveH(x+1, y);
+	if (went   )
+	    return true;
+	//couldnt go
+	ary[x][y] = ' ';
+		
+	// Go back
+	return false;
     }
 
     public static void main(String args[]){
