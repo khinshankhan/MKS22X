@@ -23,21 +23,20 @@ public class MazeSolver{
 	//debugPrinter(name);
 	ary=new char[row][col];
 	System.out.println(board.length());
+	System.out.println(board);
 	clearAry();
 	con();
     }
 
     public void con(){
-        int r=0;
-	int c=0;
-        for (int i = 0; i < board.length(); i++) {
-	    ary[r][c] =board.charAt(i);
-	    c++; 
-	    if (i % (ary[0].length - 1) == 0) {
-		r++; 
-		c = 0; 
+	int a=0;
+	for(int i=0; i<ary.length; i++){
+	    for(int j=0; j<ary[i].length; j++){
+	        ary[i][j]=board.charAt(a);
+		a++;
 	    }
 	}
+	
 	for(int i=0; i<ary.length; i++){
 	    for(int j=0; j<ary[i].length; j++)
 		System.out.print(ary[i][j]);
