@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.Comparator;
+
 public class KnightBoard{
     private int[][]board;
     int moves[][] = {{-2,1},{-1,2},{1,2},{2,1},{2,-1},{1,-2},{-1,-2},{-2,-1}};
@@ -12,7 +14,7 @@ public class KnightBoard{
 	sc=startingCols;
         board = new int[sr][sc];
 	//checkingFill();
-	//sorter(board);
+	//reorder(board);
     }
     /*
     public void checkingFill(){
@@ -101,8 +103,12 @@ public class KnightBoard{
 	}
 	//sorter(tree);
 	//i KNOW i have to sort somewhere, but where
-	//def not here tho^
-	
+	//def not here tho^ sike
+	debugPrinter(tree);
+	System.out.println("==============");
+	reorder(tree);
+	debugPrinter(tree);
+	System.out.print("\033[2J");
 	//ngl following stackoverflow post
 	for (int i=0;i<8;i++){
 	    if (valid (tree[i][1], tree[i][2]) && solveH (tree[i][1], tree[i][2], n + 1))
@@ -113,19 +119,23 @@ public class KnightBoard{
 	return false;
     }
     //2d array sorter
+    /*
     public void sorter(int a[][]){
-	for(int i=0; i<a.length; i++)
-	    Arrays.sort(a[i]);
-	int len=a[0].length-1;
-	for(int i=0, j=1; j<a.length;i++,j++){
-	    if(a[i][len]>a[j][0]){
-		int t=a[i][len];
-		a[i][len]=a[j][0];
-		a[j][0]=t;
-		sorter(a);
-	    }
+        int[][]b=new int[a[0].length][a.length];
+	for(int i=0; i<8;i++){
+	    b[i][0]=a[0][i];
+	    b[i][1]=a[1][i];
+	    b[i][2]=a[2][i];
+	}
+        Arrays.sort(b[0]);
+	for(int i=0; i<8;i++){
+	    a[0][i]=b[i][0];
+	    a[1][i]=b[i][1];
+	    a[2][i]=b[i][2];
+	    
 	}
     }
+    */
     //debug printers
     public void debugPrinter(int a[][]){
 	for (int r=0; r < a.length; r++){
@@ -141,6 +151,19 @@ public class KnightBoard{
 	    System.out.printf("\n");
 	}
     }
+    //custom compareTo, might make a quick sort using this
+    //im using c logic :') #flawless
+    //sort by first column
+    public static void reorder(int[][] a){
+	Arrays.sort(a, new Comparator<int[]>() {
+		@Override
+		public int compare(final int[] a, final int[] b) {
+		     Integer c = Integer.valueOf(a[0]);
+		     Integer d = Integer.valueOf(b[0]);
+		    return c.compareTo(d);
+		}
+	    });
+    }
     //in case of failure of solveH
     private void clear(){
 	for(int r=0; r<sr;r++){
@@ -154,7 +177,7 @@ public class KnightBoard{
 	int b= Integer.parseInt(args[1]);
 	KnightBoard c=new KnightBoard(a,b);
 	c.solveH(0,0,1);
-	c.debugPrinter();
-	//System.out.println(c);
+	//c.debugPrinter();
+	System.out.println(c);
     }
 }
