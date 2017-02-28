@@ -156,10 +156,10 @@ public class Maze{
 	if (ary[x][y] == 'E')
 	    return true;
 	//wall or went there already
-	if (ary[x][y] == '#' || ary[x][y] == '.')
+	if (ary[x][y] == '#' || ary[x][y] == '@')
 	    return false;
 	//ark path i went
-	ary[x][y] = '.';
+	ary[x][y] = '@';
 	boolean went;
 
 	// right
@@ -185,13 +185,13 @@ public class Maze{
 	return false;
     }
 
-    public String toString(){
+    public String formattedToString(){
 	String s="";
 	for(int i=0; i<ary.length; i++){
 	    for(int j=0; j<ary[i].length; j++){
 		if(ary[i][j]=='#'){
 		    s+=(ansiRed+" "+ansiReset);
-		}else if(ary[i][j]=='.'){
+		}else if(ary[i][j]=='@'){
 		    s+=(ansiGreen+" "+ansiReset);
 		}else if(ary[i][j]=='S'||ary[i][j]=='E'){
 		    s+=(ansiCyanBack+ary[i][j]+ansiReset);
@@ -199,6 +199,16 @@ public class Maze{
 		    s+=(ary[i][j]);
 		}
 	    }
+	    s+=("\n");
+	}
+	return s;
+    }
+
+    public String toString(){
+	String s="";
+	for(int i=0; i<ary.length; i++){
+	    for(int j=0; j<ary[i].length; j++)
+	        s+=(ary[i][j]);
 	    s+=("\n");
 	}
 	return s;
@@ -213,5 +223,6 @@ public class Maze{
 	}
 	a.solve();
 	System.out.println(a);
+        System.out.print(a.formattedToString());
     }
 }
