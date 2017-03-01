@@ -1,6 +1,7 @@
 public class QueenBoard{
     private int[][]board;
     private int solutionCount,size;
+    boolean ran=false;
     
     public QueenBoard(int size){
 	this.size=size;//could use board.length but that's typing, lol i forgot i made this :')
@@ -10,6 +11,7 @@ public class QueenBoard{
 	}
 	board = new int[size][size];
 	solutionCount=0;//also extra, but might as well
+	
     }
 
     /**
@@ -120,13 +122,19 @@ public class QueenBoard{
      *The board should be reset after this is run.    
      */
     public int getSolutionCount(){
-	int a= (solutionCount >= 0) ? solutionCount : -1;
-	if(size<0)
-	    a=-1;
+	int a=-1;
+	if(ran){
+	    a= (solutionCount >= 0) ? solutionCount : -1;
+	    if(size<0)
+		a=-1;
+	}
 	clear();
+	
 	return a;
     }
+    
     public void countSolutions(){
+	ran=true;
         clear();
 	solveC(0);
 	int a= (solutionCount > 0) ? solutionCount : -1;
