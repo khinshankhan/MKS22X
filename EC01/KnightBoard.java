@@ -177,8 +177,8 @@ public class KnightBoard{
     /*
     public static void main(String args[]){
 	int a= Integer.parseInt(args[0]);
-	//int b= Integer.parseInt(args[1]);
-	KnightBoard c=new KnightBoard(a,a);
+	int b= Integer.parseInt(args[1]);
+	KnightBoard c=new KnightBoard(a,b);
 	c.solveFast();
 	//c.solveH(0,0,1);
 	//c.debugPrinter();
