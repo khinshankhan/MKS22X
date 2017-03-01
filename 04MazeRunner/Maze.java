@@ -21,8 +21,29 @@ public class Maze{
     int startx, starty;
     
 
-    public Maze(String name){
-	add(name);
+    public Maze(String name)throws FileNotFoundException{
+
+	File infile = new File(name);// can be a path"/full/path/to/file.txt" 
+	Scanner inf = new Scanner(infile);
+	int lineNumber = 1;
+	col = inf.nextLine().length();
+	while(inf.hasNextLine()){
+	    String line = inf.nextLine();
+	    row+=1;
+	}
+	inf = new Scanner(infile);
+	lineNumber = 1;
+	while(inf.hasNextLine()){
+	    String line = inf.nextLine();
+	    for(int i=0; i<line.length(); i++){
+		board+=line.charAt(i);
+		formatted+=line.charAt(i);
+	    }
+	    formatted+="\n";
+	}
+	if(!validPuzzle())
+	    throw new FileNotFoundException("Not a puzzle");
+	//add(name);
         //System.out.println(row+" "+col);
 	//debugPrinterFromFile(name);
 	ary=new char[row][col];
@@ -39,6 +60,18 @@ public class Maze{
 	//formatAry();
     }
 
+    public boolean validPuzzle(){
+	int count=0;
+	for (int i = 0; i < board.length(); i++) {
+	    if (board.charAt(i) == 'S'||board.charAt(i) == 'E') {
+		count++;
+	    }
+	}
+	if(count==2)
+	    return true;
+	return false;
+    }
+    
     private void constructAry(){
 	int r=0;
 	int c=0;
@@ -55,7 +88,7 @@ public class Maze{
 	    }
 	}
     }
-
+    /*
     private void debugAry(){
         for(int i=0; i<ary.length; i++){
 	    for(int j=0; j<ary[i].length; j++)
@@ -87,7 +120,8 @@ public class Maze{
 		ary[r][c]='0';
 	}
     }
-
+    */
+    /*
     private void debugPrinterFromFile(String filename){
 	try{
 	    File infile = new File(filename);// can be a path"/full/path/to/file.txt" 
@@ -108,7 +142,8 @@ public class Maze{
 	    System.out.println("Looks like the file doesn't exist. Create and try again.");
 	}
     }
-
+    */
+    /*
     private void add(String filename){
 	try{
 	    File infile = new File(filename);// can be a path"/full/path/to/file.txt" 
@@ -133,7 +168,8 @@ public class Maze{
 	    System.out.println("Looks like the file doesn't exist. Create and try again.");
 	}
     }
-
+    */
+    /*
     private String stringFromString(){
 	String s="";
 	for(int i=0; i<col; i++){
@@ -145,7 +181,7 @@ public class Maze{
 	}
         return s;
     }
-
+    */
     public void solve(){
 	solveH(x,y);
 	ary[startx][starty]='S';
@@ -214,7 +250,7 @@ public class Maze{
 	return s;
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) throws FileNotFoundException{
 	Maze a;
 	try{
 	    a= new Maze(args[0]);
@@ -223,6 +259,6 @@ public class Maze{
 	}
 	a.solve();
 	System.out.println(a);
-        System.out.print(a.formattedToString());
+        //System.out.print(a.formattedToString());
     }
 }
