@@ -19,10 +19,12 @@ public class Maze{
     int x,y;
     //for reset
     int startx, starty;
+
+    private boolean animate;
     
 
-    public Maze(String name)throws FileNotFoundException{
-
+    public Maze(String name){
+	try{
 	File infile = new File(name);// can be a path"/full/path/to/file.txt" 
 	Scanner inf = new Scanner(infile);
 	int lineNumber = 1;
@@ -41,8 +43,13 @@ public class Maze{
 	    }
 	    formatted+="\n";
 	}
-	if(!validPuzzle())
-	    throw new FileNotFoundException("Not a puzzle");
+	if(!validPuzzle()){
+	    System.out.println("Not a puzzle");
+	    System.exit(0);
+	}
+	}catch(Exception e){
+	    System.out.println("Looks like the file doesn't exist. Create and try again.");
+	}
 	//add(name);
         //System.out.println(row+" "+col);
 	//debugPrinterFromFile(name);
@@ -154,7 +161,7 @@ public class Maze{
 		String line = inf.nextLine();
 		row+=1;
 	    }
-	    inf = new Scanner(infile);
+`	    inf = new Scanner(infile);
 	    lineNumber = 1;
 	    while(inf.hasNextLine()){
 		String line = inf.nextLine();
@@ -184,15 +191,28 @@ public class Maze{
     */
     public void solve(){
 	solveH(x,y);
-	ary[startx][starty]='S';
+	//ary[startx][starty]='S';
     }
 
     private boolean solveH(int x, int y){
+	if(animate){
+            System.out.println("\033[2J\033[1;1H"+this);
+
+            wait(20);
+        }
+	//PACMAN FORMAT
+	/*
+	if(pacmanSolver){
+	    System.out.println(pacmanMaker());
+            wait(20);
+        }
+	*/
+
 	//End base case
 	if (ary[x][y] == 'E')
 	    return true;
 	//wall or went there already
-	if (ary[x][y] == '#' || ary[x][y] == '@')
+	if (ary[x][y] == '#' || ary[x][y] == '@'||ary[x][y]=='.')
 	    return false;
 	//ark path i went
 	ary[x][y] = '@';
@@ -215,13 +235,14 @@ public class Maze{
 	if (went)
 	    return true;
 	//couldnt go
-	ary[x][y] = ' ';
+	ary[x][y] = '.';
 		
 	// Go back
 	return false;
     }
 
     public String formattedToString(){
+	ary[startx][starty]='S';
 	String s="";
 	for(int i=0; i<ary.length; i++){
 	    for(int j=0; j<ary[i].length; j++){
@@ -237,6 +258,7 @@ public class Maze{
 	    }
 	    s+=("\n");
 	}
+	ary[startx][starty]='@';
 	return s;
     }
 
@@ -249,16 +271,43 @@ public class Maze{
 	}
 	return s;
     }
+    //stuff k had that i didnt notice
 
-    public static void main(String args[]) throws FileNotFoundException{
+    private void wait(int millis){ //ADDED SORRY!
+	try {
+	    Thread.sleep(millis);
+	}
+	catch (InterruptedException e) {
+	}
+    }
+
+
+    public void setAnimate(boolean b){
+
+        animate = b;
+
+    }
+
+
+    public void clearTerminal(){
+
+        //erase terminal, go to top left of screen.
+
+        System.out.println("\033[2J\033[1;1H");
+
+    }
+
+    public static void main(String args[]){
 	Maze a;
 	try{
 	    a= new Maze(args[0]);
 	}catch(Exception e){
 	    a= new Maze("Maze1.txt");
 	}
+	a.setAnimate(true);
 	a.solve();
 	System.out.println(a);
-        //System.out.print(a.formattedToString());
+        System.out.print(a.formattedToString());
+	//System.out.println(a);
     }
 }
