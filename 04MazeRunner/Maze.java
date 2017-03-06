@@ -68,13 +68,17 @@ public class Maze{
     }
 
     public boolean validPuzzle(){
-	int count=0;
+	int alpha=0;
+	    int omega=0;
 	for (int i = 0; i < board.length(); i++) {
-	    if (board.charAt(i) == 'S'||board.charAt(i) == 'E') {
-		count++;
+	    if (board.charAt(i) == 'S') {
+		alpha++;
 	    }
+		if(board.charAt(i) == 'E'){
+			omega++
+		}
 	}
-	if(count==2)
+	if(omega==1&&alpha==1)
 	    return true;
 	return false;
     }
