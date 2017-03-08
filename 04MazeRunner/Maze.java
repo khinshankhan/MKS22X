@@ -25,28 +25,28 @@ public class Maze{
 
     public Maze(String name){
 	try{
-	File infile = new File(name);// can be a path"/full/path/to/file.txt" 
-	Scanner inf = new Scanner(infile);
-	int lineNumber = 1;
-	col = inf.nextLine().length();
-	while(inf.hasNextLine()){
-	    String line = inf.nextLine();
-	    row+=1;
-	}
-	inf = new Scanner(infile);
-	lineNumber = 1;
-	while(inf.hasNextLine()){
-	    String line = inf.nextLine();
-	    for(int i=0; i<line.length(); i++){
-		board+=line.charAt(i);
-		formatted+=line.charAt(i);
+	    File infile = new File(name);// can be a path"/full/path/to/file.txt" 
+	    Scanner inf = new Scanner(infile);
+	    int lineNumber = 1;
+	    col = inf.nextLine().length();
+	    while(inf.hasNextLine()){
+		String line = inf.nextLine();
+		row+=1;
 	    }
-	    formatted+="\n";
-	}
-	if(!validPuzzle()){
-	    System.out.println("Not a puzzle");
-	    System.exit(0);
-	}
+	    inf = new Scanner(infile);
+	    lineNumber = 1;
+	    while(inf.hasNextLine()){
+		String line = inf.nextLine();
+		for(int i=0; i<line.length(); i++){
+		    board+=line.charAt(i);
+		    formatted+=line.charAt(i);
+		}
+		formatted+="\n";
+	    }
+	    if(!validPuzzle()){
+		System.out.println("Not a puzzle");
+		System.exit(0);
+	    }
 	}catch(Exception e){
 	    System.out.println("Looks like the file doesn't exist. Create and try again.");
 	}
@@ -69,14 +69,14 @@ public class Maze{
 
     public boolean validPuzzle(){
 	int alpha=0;
-	    int omega=0;
+	int omega=0;
 	for (int i = 0; i < board.length(); i++) {
 	    if (board.charAt(i) == 'S') {
 		alpha++;
 	    }
-		if(board.charAt(i) == 'E'){
-			omega++
-		}
+	    if(board.charAt(i) == 'E'){
+		omega++;
+	    }
 	}
 	if(omega==1&&alpha==1)
 	    return true;
@@ -100,98 +100,98 @@ public class Maze{
 	}
     }
     /*
-    private void debugAry(){
-        for(int i=0; i<ary.length; i++){
-	    for(int j=0; j<ary[i].length; j++)
-		System.out.print(ary[i][j]);
-	    System.out.println("");
-	}
-    }
+      private void debugAry(){
+      for(int i=0; i<ary.length; i++){
+      for(int j=0; j<ary[i].length; j++)
+      System.out.print(ary[i][j]);
+      System.out.println("");
+      }
+      }
 
-    private void formatAry(){
-	for(int i=0; i<ary.length; i++){
-	    for(int j=0; j<ary[i].length; j++){
-		if(ary[i][j]=='#'){
-		    System.out.print(ansiRed+" "+ansiReset);
-		}else if(ary[i][j]=='.'){
-		    System.out.print(ansiGreen+" "+ansiReset);
-		}else if(ary[i][j]=='S'||ary[i][j]=='E'){
-		    System.out.print(ansiCyanBack+ary[i][j]+ansiReset);
-		}else{
-		    System.out.print(ary[i][j]);
-		}
-	    }
-	    System.out.println("");
-	}
-    }
+      private void formatAry(){
+      for(int i=0; i<ary.length; i++){
+      for(int j=0; j<ary[i].length; j++){
+      if(ary[i][j]=='#'){
+      System.out.print(ansiRed+" "+ansiReset);
+      }else if(ary[i][j]=='.'){
+      System.out.print(ansiGreen+" "+ansiReset);
+      }else if(ary[i][j]=='S'||ary[i][j]=='E'){
+      System.out.print(ansiCyanBack+ary[i][j]+ansiReset);
+      }else{
+      System.out.print(ary[i][j]);
+      }
+      }
+      System.out.println("");
+      }
+      }
     
-    private void clearAry(){
-	for(int r=0; r<ary.length;r++){
-	    for(int c=0; c<ary[r].length;c++)
-		ary[r][c]='0';
-	}
-    }
+      private void clearAry(){
+      for(int r=0; r<ary.length;r++){
+      for(int c=0; c<ary[r].length;c++)
+      ary[r][c]='0';
+      }
+      }
     */
     /*
-    private void debugPrinterFromFile(String filename){
-	try{
-	    File infile = new File(filename);// can be a path"/full/path/to/file.txt" 
-	    Scanner inf = new Scanner(infile);
-	    int lineNumber = 1;
-	    while(inf.hasNextLine()){
-		String line = inf.nextLine();
-		for(int i=0; i<line.length(); i++){
-		    if('#'==line.charAt(i)){
-			System.out.print(ansiRed+" "+ansiReset);
-		    }else{
-			System.out.print(line.charAt(i));
-		    }
-		}
-		System.out.print("\n");
-	    }
-	}catch(Exception e){
-	    System.out.println("Looks like the file doesn't exist. Create and try again.");
-	}
-    }
+      private void debugPrinterFromFile(String filename){
+      try{
+      File infile = new File(filename);// can be a path"/full/path/to/file.txt" 
+      Scanner inf = new Scanner(infile);
+      int lineNumber = 1;
+      while(inf.hasNextLine()){
+      String line = inf.nextLine();
+      for(int i=0; i<line.length(); i++){
+      if('#'==line.charAt(i)){
+      System.out.print(ansiRed+" "+ansiReset);
+      }else{
+      System.out.print(line.charAt(i));
+      }
+      }
+      System.out.print("\n");
+      }
+      }catch(Exception e){
+      System.out.println("Looks like the file doesn't exist. Create and try again.");
+      }
+      }
     */
     /*
-    private void add(String filename){
-	try{
-	    File infile = new File(filename);// can be a path"/full/path/to/file.txt" 
-	    Scanner inf = new Scanner(infile);
-	    int lineNumber = 1;
-	    col = inf.nextLine().length();
-	    while(inf.hasNextLine()){
-		String line = inf.nextLine();
-		row+=1;
-	    }
-`	    inf = new Scanner(infile);
-	    lineNumber = 1;
-	    while(inf.hasNextLine()){
-		String line = inf.nextLine();
-		for(int i=0; i<line.length(); i++){
-		    board+=line.charAt(i);
-		    formatted+=line.charAt(i);
-		}
-		formatted+="\n";
-	    }
-	}catch(Exception e){
-	    System.out.println("Looks like the file doesn't exist. Create and try again.");
-	}
-    }
+      private void add(String filename){
+      try{
+      File infile = new File(filename);// can be a path"/full/path/to/file.txt" 
+      Scanner inf = new Scanner(infile);
+      int lineNumber = 1;
+      col = inf.nextLine().length();
+      while(inf.hasNextLine()){
+      String line = inf.nextLine();
+      row+=1;
+      }
+      `	    inf = new Scanner(infile);
+      lineNumber = 1;
+      while(inf.hasNextLine()){
+      String line = inf.nextLine();
+      for(int i=0; i<line.length(); i++){
+      board+=line.charAt(i);
+      formatted+=line.charAt(i);
+      }
+      formatted+="\n";
+      }
+      }catch(Exception e){
+      System.out.println("Looks like the file doesn't exist. Create and try again.");
+      }
+      }
     */
     /*
-    private String stringFromString(){
-	String s="";
-	for(int i=0; i<col; i++){
-	    if('#'==board.charAt(i)){
-		System.out.print(ansiRed+" "+ansiReset);
-	    }else{
-		System.out.print(board.charAt(i));
-	    }
-	}
-        return s;
-    }
+      private String stringFromString(){
+      String s="";
+      for(int i=0; i<col; i++){
+      if('#'==board.charAt(i)){
+      System.out.print(ansiRed+" "+ansiReset);
+      }else{
+      System.out.print(board.charAt(i));
+      }
+      }
+      return s;
+      }
     */
     public void solve(){
 	solveH(x,y);
@@ -200,16 +200,17 @@ public class Maze{
 
     private boolean solveH(int x, int y){
 	if(animate){
-            System.out.println("\033[2J\033[1;1H"+this);
-
+            //System.out.println("\033[2J\033[1;1H"+this);
+	    clearTerminal();
+	    System.out.println(this);
             wait(20);
         }
 	//PACMAN FORMAT
 	/*
-	if(pacmanSolver){
-	    System.out.println(pacmanMaker());
-            wait(20);
-        }
+	  if(pacmanSolver){
+	  System.out.println(pacmanMaker());
+	  wait(20);
+	  }
 	*/
 
 	//End base case
@@ -298,9 +299,8 @@ public class Maze{
         //erase terminal, go to top left of screen.
 
         System.out.println("\033[2J\033[1;1H");
-
     }
-
+    /*
     public static void main(String args[]){
 	Maze a;
 	try{
@@ -314,4 +314,5 @@ public class Maze{
         System.out.print(a.formattedToString());
 	//System.out.println(a);
     }
+    */
 }
