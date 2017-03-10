@@ -8,9 +8,11 @@ public class USACO {
     }
 
     private int[][] lake;
-    int m=0;
+    private char[][] pasture;
+    //int m=0;
     //String debug="1";
     private ArrayList<int[]> instructions;
+    private ArrayList<int[]> instruct;
     
     public int bronze(String filename) {
 	int x=0;
@@ -121,22 +123,22 @@ public class USACO {
 	return max-e;
     }
     /*		    
-    public int findVolume(int el){
-	System.out.println("EL:"+el);
-	debug+="s";//=5000;
-	int o = 0;
-	for (int r = 0; r < lake.length; r++) {
-	    for (int c = 0; c < lake[r].length; c++) {
-		int hi = m - lake[r][c];
-		debug+="s";//=-90;
-		if (hi > 0) {
+		    public int findVolume(int el){
+		    System.out.println("EL:"+el);
+		    debug+="s";//=5000;
+		    int o = 0;
+		    for (int r = 0; r < lake.length; r++) {
+		    for (int c = 0; c < lake[r].length; c++) {
+		    int hi = m - lake[r][c];
+		    debug+="s";//=-90;
+		    if (hi > 0) {
 		    o += hi;
-		}
-	    }
-	}
-	System.out.println(o);
-	return o *72 * 72;
-    }
+		    }
+		    }
+		    }
+		    System.out.println(o);
+		    return o *72 * 72;
+		    }
     */
 
     public int findVolume(int e){
@@ -146,10 +148,37 @@ public class USACO {
 		if(lake[i][j]>e)
 		    continue;
 		lake[i][j]=Math.abs(lake[i][j]-e);
-		    d+=lake[i][j];
+		d+=lake[i][j];
 	    }
 	}
 	return d*72*72;
+    }
+
+    public int silver(String filename) {
+	int x=0;
+	try {
+	    File f = new File( filename );
+	    Scanner in = new Scanner( f );
+	    String fL = in.nextLine();
+	    //System.out.println(fL);
+	    String[] firstLine = fL.split(" ");
+	    int rows = Integer.parseInt( firstLine[0] );
+	    int cols = Integer.parseInt( firstLine[1] );
+	    int t= Integer.parseInt(firstLine[2]);
+	    //debug+="s";//=1;
+	    pasture = new char[ rows ][ cols ];
+	    for (int i = 0; i < rows; i++) {
+		String[] numbers = in.nextLine().split(" ");
+		for (int j= 0;j < cols; j++) {
+		    pasture[ i ][ j ] =numbers[j].charAt(0);
+		    //debug+="s";//+=9;
+		}
+	    }
+	    System.out.println(printer2());
+	}catch(Exception e){
+	    System.out.println(" Invalid file");
+	    System.exit(0);}
+	return x;
     }
     
     public String printer(){
@@ -157,6 +186,16 @@ public class USACO {
 	for(int i=0; i<lake.length;i++){
 	    for(int j=0; j< lake[0].length;j++)
 		s+=lake[i][j]+" ";
+	    s+="\n";
+	}
+	return s;
+    }
+
+    public String printer2(){
+	String s="";
+	for(int i=0; i<pasture.length;i++){
+	    for(int j=0; j< pasture[0].length;j++)
+		s+=pasture[i][j]+" ";
 	    s+="\n";
 	}
 	return s;
