@@ -2,7 +2,7 @@
 <h2> Khinshan Khan Period 9</h2>
 
  ----------------
-| Repo Purpsose: |
+ Repo Purpsose: 
  ----------------
  
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -10,7 +10,7 @@ Semester 2 APCS repo for K
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
  ------------------
-| Github Username: |
+ Github Username: 
  ------------------
  ~~~~~~~~
  kkhan01
