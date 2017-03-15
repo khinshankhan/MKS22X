@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class QuickSelect{
+public class Quick{
     //swap two values in int array
     public static void swap(int[] data, int a, int b) {
 	int store = data[a];
