@@ -13,7 +13,7 @@ public class Driver{
     public static void main(String [] args){
 	int []data= randomArray(10, 100);
 	System.out.println(Arrays.toString(data));
-	System.out.println(QuickSelect.part(data, 0, 9));
+	System.out.println(Quick.part(data, 0, 9));
 	System.out.println(Arrays.toString(data));
     }
 }
