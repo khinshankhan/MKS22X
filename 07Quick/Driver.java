@@ -11,10 +11,12 @@ public class Driver{
     }
     
     public static void main(String [] args){
-	int []data= randomArray(10, 100);
-	System.out.println(Arrays.toString(data));
-	System.out.println(Quick.part(data, 0, 9));
-	System.out.println(Arrays.toString(data));
+	/*int []data= randomArray(10, 100);
+	  System.out.println(Arrays.toString(data));
+	  System.out.println(Quick.part(data, 0, 9));
+	  System.out.println(Arrays.toString(data));
+	*/
+	int[]ary = { 2, 10, 15, 23, 0,  5};
     }
 }
 	

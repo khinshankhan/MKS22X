@@ -1,6 +1,25 @@
 import java.util.*;
 
 public class Quick{
+
+    public static int quickselect(int []data, int k){
+	//return the value that is the kth smallest value of the array. 
+	//use your partition method to help you accomplish this.
+	int start=0;
+	int end=data.length-1;
+        int pos=part(data, start, end);
+	while(pos!=k){
+	    if(pos>k){
+		end=pos;
+		pos=part(data, start, end);
+	    }
+	    if(pos<k){
+		start=pos;
+		pos=part(data, pos, end);
+	    }
+	}
+	return data[pos];
+    }
     //swap two values in int array
     public static void swap(int[] data, int a, int b) {
 	int store = data[a];
