@@ -48,7 +48,7 @@ public class Quick{
 	int currenti = start;
 	for(int i = start; i < end; i++) {
 	    //System.out.println(Arrays.toString(data));
-	    if(data[i] <= data[end]) {
+	    if(data[i] < data[end]) {
 		swap(data, currenti, i);
 		currenti++;
 	    }

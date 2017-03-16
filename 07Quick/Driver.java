@@ -34,6 +34,7 @@ public class Driver{
 	    //checking for a friend; 10 min and 20 max
 	    int size=10+(int)Math.floor(Math.random()*(20-10+1));
 	    int []data= randomArray(size, 1000);
+	    //data[7]=data[3]; //double check
 	    System.out.println(" Original:"+Arrays.toString(data));
 	    //checking for a friend
 	    int randompos=(int)Math.floor(Math.random()*(data.length));
