@@ -2,24 +2,6 @@ import java.util.*;
 
 public class Quick{
 
-    public static int quickselect(int []data, int k){
-	//return the value that is the kth smallest value of the array. 
-	//use your partition method to help you accomplish this.
-	int start=0;
-	int end=data.length-1;
-        int pos=part(data, start, end);
-	while(pos!=k){
-	    if(pos>k){
-		end=pos;
-		pos=part(data, start, end);
-	    }
-	    if(pos<k){
-		start=pos;
-		pos=part(data, pos, end);
-	    }
-	}
-	return data[pos];
-    }
     //swap two values in int array
     public static void swap(int[] data, int a, int b) {
 	int store = data[a];
@@ -27,9 +9,38 @@ public class Quick{
 	data[b] = store;
     }
     
+    public static int quickselect(int []data, int k){
+	//return the value that is the kth smallest value of the array. 
+	//use your partition method to help you accomplish this.
+	int pos=0;
+	int start=0;
+	int end=data.length-1;
+	
+	while(true){
+	    //System.out.println(Arrays.toString(data));
+	    int x = part(data, start, end);
+	    pos=x;
+	    if(k==pos)
+		break;
+	    if(k < pos) {
+		end = pos;
+	    } else {
+		start = pos;
+	    }
+	}
+	//System.out.println(Arrays.toString(data));
+	return data[pos];
+    }
+    
     public static int part ( int [] data, int start, int end){
+	/*
 	Random random = new Random();
+	System.out.println(start+":"+end+"\n"+Arrays.toString(data));
 	int pos = random.nextInt(end - start) + start;
+	*/
+	//testing for a friend
+	int pos=start+(int)Math.floor(Math.random()*(end-start+1));
+	//System.out.println(pos+";"+data[pos]);
 	//***System.out.println(pos+":"+data[pos]);
 	//System.out.println(Arrays.toString(data)+"\n");
 	swap(data, pos, end); // move pivot to end
@@ -37,7 +48,7 @@ public class Quick{
 	int currenti = start;
 	for(int i = start; i < end; i++) {
 	    //System.out.println(Arrays.toString(data));
-	    if(data[i] < data[end]) {
+	    if(data[i] <= data[end]) {
 		swap(data, currenti, i);
 		currenti++;
 	    }

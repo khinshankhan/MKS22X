@@ -17,6 +17,12 @@ public class Driver{
 	  System.out.println(Arrays.toString(data));
 	*/
 	int[]ary = { 2, 10, 15, 23, 0,  5};
+	System.out.println(Quick.quickselect( ary , 0 )); //would return 0
+	System.out.println(Quick.quickselect( ary , 1 )); //would return 2
+	System.out.println(Quick.quickselect( ary , 2 )); //would return 5
+	System.out.println(Quick.quickselect( ary , 3 )); //would return 10
+	System.out.println(Quick.quickselect( ary , 4 )); //would return 15
+	System.out.println(Quick.quickselect( ary , 5 )); //would return 23
     }
 }
 	
