@@ -35,15 +35,18 @@ public class Driver{
 	    int size=10+(int)Math.floor(Math.random()*(20-10+1));
 	    int []data= randomArray(size, 1000);
 	    //data[7]=data[3]; //double check
-	    System.out.println(" Original:"+Arrays.toString(data));
+	    System.out.println("\n Original:"+Arrays.toString(data));
+	    int[]sorted=data.clone();
 	    //checking for a friend
 	    int randompos=(int)Math.floor(Math.random()*(data.length));
+	    Arrays.sort(sorted);
+	    System.out.println(" Sorted:"+Arrays.toString(sorted)+"\n For index: "+randompos+"\n");
 	    int q= Quick.quickselect(data, randompos);
-	    Arrays.sort(data);
 	    if(q==data[randompos]){
-		System.out.println(String.format(" Woo! for %s \n %s \n sortedSelect: %s : quickSelect: %s",
-						 randompos, Arrays.toString(data), data[randompos], q));
-	    }else{System.out.println("ERROR");}
+		System.out.println(String.format(" Woo! \n sortedSelect: %s : quickSelect: %s",
+						 sorted[randompos], q));
+	    }else{System.out.println(String.format("ERROR! \n sortedSelect: %s : quickSelect: %s",
+						   sorted[randompos], q));}
 	}
 
     }
