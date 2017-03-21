@@ -32,16 +32,17 @@ public class Quick{
 	return data[pos];
     }
     
-    public static int part ( int [] data, int start, int end){
+    public static int[] part ( int [] data, int start, int end){
+	
 	/*
 	Random random = new Random();
 	System.out.println(start+":"+end+"\n"+Arrays.toString(data));
 	int pos = random.nextInt(end - start) + start;
-	*/
+	
 	//testing for a friend
 	int pos=start+(int)Math.floor(Math.random()*(end-start+1));
 	//System.out.println(pos+";"+data[pos]);
-	//***System.out.println(pos+":"+data[pos]);
+	//System.out.println(pos+":"+data[pos]);
 	//System.out.println(Arrays.toString(data)+"\n");
 	swap(data, pos, end); // move pivot to end
 	//System.out.println(Arrays.toString(data));
@@ -57,5 +58,32 @@ public class Quick{
 	swap(data, end, currenti); // Move pivot to its final place
 	//System.out.println(Arrays.toString(data));
 	return currenti;
+    }
+	*/
+
+	//Dutch Flag Problem
+
+	int lt=start;
+	int i=start;
+	int gt=end;
+	int pos=start+(int)Math.floor(Math.random()*(end-start+1));
+	swap(data,0,pos);
+	int v=data
+	while(i<=gt)
+	    if(a[i]==v){
+		i++;
+	    }else if(a[i]<v){
+		swap(data, i, lt);
+		i++;
+		lt++;
+	    }else{
+		swap(data, i, gt);
+		g--;
+	    }
+	swap(data, 0, lt);
+	int[] posHolder=new int [2];
+	posHolder[0]=lt;
+	posHolder[1]=gt;
+	return posHolder;
     }
 }
