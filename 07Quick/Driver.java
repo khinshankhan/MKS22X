@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class Driver{
@@ -31,8 +32,8 @@ public class Driver{
 	*/
 	//Quick Select Test Cases, can just look to see if a line isn't spaced and is "ERROR"
 	//Might modify to give more insight, but what works works.
-	
-	for(int i=0; i<10; i++){
+	/*
+	for(int i=0; i<1000000000; i++){
 	    //checking for a friend; 10 min and 20 max
 	    int size=10+(int)Math.floor(Math.random()*(20-10+1));
 	    int []data= randomArray(size, 1000);
@@ -45,27 +46,34 @@ public class Driver{
 	    //System.out.println(" Sorted:"+Arrays.toString(sorted)+"\n For index: "+randompos+"\n");
 	    int q= Quick.quickSelect(data, randompos);
 	    if(q==data[randompos]){
-		System.out.println("WOO!\n");//String.format(" Woo! \n sortedSelect: %s : quickSelect: %s",
-				   //sorted[randompos], q));
+		System.out.println(String.format(" Woo! \n sortedSelect: %s : quickSelect: %s",
+				   sorted[randompos], q));
 	    }else{System.out.println(String.format("ERROR! \n sortedSelect: %s : quickSelect: %s",
-						   sorted[randompos], q));}
+						   sorted[randompos], q));
+		return;}
 	}
 	
 
-
+	*/
 
 	//QuickSort Test Cases
-	/*
-	for(int i=0; i<10; i++){
+	
+	for(int i=0; i<1000; i++){
 	    //run out of heap?
 	    //int []data= randomArray(249710013, 100);
-	    int []data= randomArray(9999999, 100);
+	    int []data= randomArray(99999, 100);
 	    int[]realSort=data.clone();
 	    Quick.quickSort(data);
 	    Arrays.sort(realSort);
-	    System.out.println(Arrays.equals(data, realSort)+"\n");
+	    //System.out.println(Arrays.equals(data, realSort)+"\n");
+	    if(Arrays.equals(data, realSort)){
+		System.out.println("GOOD");
+	    }else{
+		System.out.println("OH NO");
+		return;
+	    }
 	}
-	*/
+	
     }
 }
 

@@ -97,10 +97,16 @@ public class Quick{
 		gt--;
 	    }
 	}
+	if(lt==1 && k==0){
+	    if(data[0]>data[1])
+		return data[1];
+	    return data[0];
+	}
 	if(k==lt || k==gt || (k>lt && k<gt))
 	    return data[k];
         if (k < lt){
-            return dutchPartition(data, k, start, lt);
+	    System.out.println(lt+";"+k);
+            return dutchPartition(data, k, start, lt-1);
         } else{
             return dutchPartition(data, k, gt, end);
         }
