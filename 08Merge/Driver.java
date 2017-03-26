@@ -12,13 +12,28 @@ public class Driver{
     }
     
     public static void main(String [] args){
-	int[] a= randomArray(5, 100);
-	int[] b= randomArray(7, 100);
-	Arrays.sort(a);
-	Arrays.sort(b);
-	System.out.println(Arrays.toString(a)+"\n"+Arrays.toString(b));
-	int[] c=new int[a.length+b.length];
-	Merge.merge(a,b,c);
-	System.out.println(Arrays.toString(c));
+	/*
+	  int[] a= randomArray(5, 100);
+	  int[] b= randomArray(7, 100);
+	  Arrays.sort(a);
+	  Arrays.sort(b);
+	  System.out.println(Arrays.toString(a)+"\n"+Arrays.toString(b));
+	  int[] c=new int[a.length+b.length];
+	  Merge.merge(a,b,c);
+	  System.out.println(Arrays.toString(c));
+	*/
+	for(int i=0; i< 20; i++){
+	    int[] test= randomArray(1000000, 100);
+	    //System.out.println(Arrays.toString(test));
+	    int[] sorted= test.clone();
+	    Arrays.sort(sorted);
+	    Merge.mergesort(test);
+	    if(Arrays.equals(test, sorted)){
+		System.out.println("GOOD");
+	    }else{
+		System.out.println("OH NO");
+		return;
+	    }
+	}
     }
 }
