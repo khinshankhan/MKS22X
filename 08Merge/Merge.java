@@ -1,5 +1,8 @@
 public class Merge{
+    
     public static void mergesort(int[]ary){
+	if(ary.length == 1)
+	    return;
 	
 	int len=ary.length/2;
 	int[] left = new int[len];
@@ -23,6 +26,7 @@ public class Merge{
 	merge(left,right,ary);
 	return;
     }
+    
     public static void merge(int[]a,int[]b,int[]destination){
 	
         for(int i=0, ai=0, bi=0; i<destination.length; i++){
