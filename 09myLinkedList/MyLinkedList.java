@@ -24,8 +24,8 @@ public class MyLinkedList{
     }
     
     public boolean add(int value){
-	LNode a= new LNode(value, start);
-	a=start;
+	LNode a= new LNode(value,start);
+	start=a;
 	size++;
 	return true;
     }
@@ -35,13 +35,15 @@ public class MyLinkedList{
     }
 
     public String toString(){
-	String result="[";
+	String ans="[";
 	LNode current = start;
-	for(int i=0; i< size; i++){
-	    ans+=" "+current.value+",";
+        while(current.next!=null){
+	//for(int i=0; i<size; i++){
+	    ans+=" "+current.val+",";
 	    current = current.next;
 	}
-	ans+="]";
+	ans+=" "+current.val+" ]";
+	return ans;
     }
 }
 
