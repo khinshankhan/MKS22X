@@ -27,5 +27,7 @@ public class Driver{
 	System.out.println(alpha.remove(0));
 	System.out.println(alpha.remove(alpha.size()-1));
 	System.out.println(alpha.toString()+"\nSize: "+alpha.size());
+	MyLinkedList beta= new MyLinkedList();
+	System.out.println(beta.toString()+"\nSize: "+beta.size());
     }
 }

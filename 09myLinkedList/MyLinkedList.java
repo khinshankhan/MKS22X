@@ -96,18 +96,18 @@ public class MyLinkedList{
 	    temp=start.val;
 	    start=start.next;
 	}else{
-	while(index!=1){
-	    current= current.next;
-	    index--;
-	}
-	temp=current.next.val;
-	if(current.next.next==null){
-	    current.next=null;
-	    //System.out.println(1);
-	}else{
-	    current.next=current.next.next;
-	    //System.out.println(2);
-	}
+	    while(index!=1){
+		current= current.next;
+		index--;
+	    }
+	    temp=current.next.val;
+	    if(current.next.next==null){
+		current.next=null;
+		//System.out.println(1);
+	    }else{
+		current.next=current.next.next;
+		//System.out.println(2);
+	    }
 	}
 	size--;
 	//System.out.println(this.toString());
@@ -117,12 +117,16 @@ public class MyLinkedList{
     public String toString(){
 	String ans="[";
 	LNode current = start;
-        while(current.next!=null){
-	    //for(int i=0; i<size; i++){
-	    ans+=" "+current.val+",";
-	    current = current.next;
+	if(current!=null){
+	    while(current.next!=null){
+		//for(int i=0; i<size; i++){
+		ans+=" "+current.val+",";
+		current = current.next;
+	    }
+	    ans+=" "+current.val+" ]";
+	}else{
+	    ans+=" ]";
 	}
-	ans+=" "+current.val+" ]";
 	return ans;
     }
  
