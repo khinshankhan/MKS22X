@@ -23,7 +23,7 @@ public class MyLinkedList{
 	}
     }
     
-    public boolean addFirst(int value){
+    private boolean addFirst(int value){
 	LNode a= new LNode(value,start);
 	start=a;
 	//size++;
