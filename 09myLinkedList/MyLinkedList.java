@@ -1,6 +1,7 @@
 public class MyLinkedList{
 
-    LNode start;
+    LNode start; //head
+    LNode end; //tail
     int size;
 
     public MyLinkedList(){
@@ -11,10 +12,12 @@ public class MyLinkedList{
     private class LNode{
 	int val;
 	LNode next;
+	LNode prev;
 	
 	public LNode(int x){
 	    val=x;
 	    next=null;
+	    prev=null;
 	}
 	
 	public LNode(int x, LNode n){
@@ -119,13 +122,12 @@ public class MyLinkedList{
 	LNode current = start;
 	if(current!=null){
 	    while(current.next!=null){
-		//for(int i=0; i<size; i++){
 		ans+=" "+current.val+",";
 		current = current.next;
 	    }
 	    ans+=" "+current.val+" ]";
 	}else{
-	    ans+=" ]";
+	    ans+="]";
 	}
 	return ans;
     }
