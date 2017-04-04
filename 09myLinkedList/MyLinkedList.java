@@ -6,6 +6,7 @@ public class MyLinkedList{
 
     public MyLinkedList(){
 	start=null;
+	end=null;
 	size=0;
     }
 
@@ -23,6 +24,8 @@ public class MyLinkedList{
 	public LNode(int x, LNode n){
 	    val= x;
 	    next= n;
+	    prev=next.prev;
+	    next.prev=this;
 	}
     }
     
@@ -133,7 +136,7 @@ public class MyLinkedList{
     }
  
     private void NodePrinter(LNode a){
-        System.out.println(String.format("LNode \n Val: %s\n Next: %s", a.val, a.next));
+        System.out.println(String.format("LNode \n Val: %s\n Prev: %s\n Next: %s", a.val, a.prev, a.next));
     }
 }
 
