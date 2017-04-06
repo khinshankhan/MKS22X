@@ -129,6 +129,7 @@ public class MyLinkedList{
 	}else if(index==size-1){
 	    temp= tail.value;
 	    tail.prev.next= null;
+	    tail= tail.prev;
 	    size--;
 	}else{
 	    LNode dummy= getNthNode(index-1);
@@ -138,10 +139,19 @@ public class MyLinkedList{
     }
 
     public void add(int index,int value){
-	LNode a= new LNode(value);
-	a.prev= getNthNode(index);
-	a.next= getNthNode(index).next;
-	getNthNode(index).next= a;
+	if(index==0){
+	    LNode a= head;
+	    addAfter(head, new LNode(value));
+	    remove(0);
+	    addAfter(head, a);
+	    size++;
+	}else if(index==size){
+	    add(value);
+	    size--;
+	}else{
+	    addAfter(getNthNode(index-1),new LNode(value));
+	}
+	size++;
     }
  
     private void NodePrinter(LNode a){
