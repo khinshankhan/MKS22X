@@ -26,6 +26,8 @@ public class MyLinkedList{
     }
 
     private LNode getNthNode(int n){
+	if(n<0 || n>= size)
+	    throw new IndexOutOfBoundsException();
 	LNode current= head;
 	if(size != 0){
 	    int a= size/2;
