@@ -1,4 +1,6 @@
-public class MyLinkedList{
+import java.util.*;
+
+public class MyLinkedList implements Iterable<Integer>{
 
     private class LNode{
 	LNode next,prev;
@@ -158,6 +160,36 @@ public class MyLinkedList{
  
     private void NodePrinter(LNode a){
         System.out.println(String.format("LNode \n Val: %s\n Prev: %s\n Next: %s", a.value, a.prev, a.next));
+    }
+
+    public Iterator<Integer> iterator(){
+	return new LLIterator(this);
+    }
+
+    public static class LLIterator {
+
+	private int element;
+	private MyLinkedList MLL;
+    
+	public SuperArrayIterator(SuperArray superArray) {
+	    this.superArray = superArray;
+	    element =0;
+	}
+	public String next() {
+	    if (hasNext()) {
+		element++;
+		return superArray.get(element-1);
+	    }
+	    else {
+		throw new NoSuchElementException();
+	    }
+	}
+	public boolean hasNext() {
+	    return element < superArray.size();
+	}
+	public void remove() {
+	    throw new UnsupportedOperationException();
+	}
     }
 
 }
