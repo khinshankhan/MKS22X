@@ -1,36 +1,59 @@
 public class Driver{
 
     public static void main(String [] args){
-	MyLinkedList alpha= new MyLinkedList();
-	alpha.add(110);
-	alpha.add(72);
-	alpha.add(60);
-	alpha.add(17);
-	alpha.add(51);
-	System.out.println(alpha.add(5));
-	System.out.println(alpha.toString()+"\nSize: "+alpha.size());
-	//System.out.println(alpha.indexOf(60));
-	//System.out.println(alpha.indexOf(5));
-	//System.out.println(alpha.indexOf(0));
-	//System.out.println(alpha.get(0));
-	//System.out.println(alpha.set(0, 900));
-	//System.out.println(alpha.get(0));
-	//System.out.println(alpha.get(1));
-	//System.out.println(alpha.get(2));
-	//System.out.println(alpha.get(4));
-	//System.out.println(alpha.set(4, 500));
-	//System.out.println(alpha.get(4));
-	//System.out.println(alpha.get(0));
-	//System.out.println(alpha.indexOf(500));
-	//System.out.println(alpha.toString()+"\nSize: "+alpha.size());
-	System.out.println(alpha.remove(2));
-	System.out.println(alpha.remove(0));
-	System.out.println(alpha.remove(alpha.size()-1));
-	alpha.add(0,101);
-	System.out.println(alpha.toString()+"\nSize: "+alpha.size());
-	alpha.add(3,50);
-	System.out.println(alpha.toString()+"\nSize: "+alpha.size());
-	//MyLinkedList beta= new MyLinkedList();
-	//System.out.println(beta.toString()+"\nSize: "+beta.size());
+	//Testing: constructor, toString, size, add, get, remove
+	
+	MyLinkedList a= new MyLinkedList();
+	System.out.println(a.toString()+"\nSize: "+a.size());//[], size=0
+	for(int i=0; i<20; i++){
+	    a.add(i);
+	    if(a.get(a.size()-1)%2==0)
+		a.remove(a.size()-1);
+	    //System.out.println(a);//Check if all nums arent odd
+	}
+	
+	System.out.println(a+"\nSize: "+a.size());//odds 0-20 in order, size=10
+	
+	//Testing: set, indexOf, add(i,v); reinforce others
+	for(int i=0; i<10; i++){
+	    a.set(i,i*100);
+	}
+	
+	System.out.println(a+"\nSize: "+a.size());//mulitples of 100, size=10
+	for(int i=0; i<10; i++){
+	    a.set(i,a.indexOf(i*100));
+	}
+	
+        System.out.println(a+"\nSize: "+a.size());//0-9 in order, size=10
+	a.remove(1);
+	a.add(1,1);
+	for(int i=0; i<10; i++){
+	    a.add(0,i*-1-1);
+	}
+	a.add(a.size(),10);
+	
+	System.out.println(a+"\nSize: "+a.size());//-10-10 in order, size=21
+	
+	//Testing: Iterator
+	MyLinkedList data = new MyLinkedList();
+	int i = 0;
+	while(i < 15){
+	    data.add(i);
+	    i++;
+	}
+
+	System.out.println("\nContents: "+data);
+	System.out.println("Standard loop:");
+
+	for(int n = 0; n < data.size(); n++){
+	    System.out.print(data.get(n)+" ");
+	}
+	System.out.println();
+	System.out.println("for-each loop:");
+	for(Integer s : data){
+	    System.out.print(s+" ");
+	}
+	//should be same
     }
+
 }

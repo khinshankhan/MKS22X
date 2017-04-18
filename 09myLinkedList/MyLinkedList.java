@@ -52,19 +52,18 @@ public class MyLinkedList implements Iterable<Integer>{
 	location.next= toBeAdded;
     }
 
-    /*
-      LNode a= new LNode(value);
-      a.prev= getNthNode(index);
-      a.next= getNthNode(index).next;
-      getNthNode(index).next= a;
-    */
-
-    private int remove(LNode target){
-	int temp= target.next.value;
-	target.next.next.prev=target;
-	target.next=target.next.next;
-	size--;
-	return temp;
+    private void remove(LNode target){
+        if(target==head){
+	    head= head.next;
+	    if(size!=1)
+		head.prev= null;
+	}else if(target==tail){
+	    tail= tail.prev;
+	    tail.next= null;
+	}else{
+	    target.prev.next= target.next;
+	    target.next.prev= target.prev;
+	}
     }
 
 
@@ -124,21 +123,10 @@ public class MyLinkedList implements Iterable<Integer>{
     }
 
     public int remove(int index){
-	int temp;
-	if(index==0){
-	    temp= head.value;
-	    head.next.prev= null;
-	    head= head.next;
-	    size--;
-	}else if(index==size-1){
-	    temp= tail.value;
-	    tail.prev.next= null;
-	    tail= tail.prev;
-	    size--;
-	}else{
-	    LNode dummy= getNthNode(index-1);
-	    temp= remove(dummy);
-	}
+	LNode target= getNthNode(index);
+	int temp= target.value;
+	remove(target);
+	size--;
 	return temp;
     }
 
