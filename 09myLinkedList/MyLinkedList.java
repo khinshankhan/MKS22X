@@ -166,26 +166,26 @@ public class MyLinkedList implements Iterable<Integer>{
 	return new LLIterator(this);
     }
 
-    public static class LLIterator {
+    public static class LLIterator Iterator<Integer>{
 
 	private int element;
 	private MyLinkedList MLL;
     
-	public SuperArrayIterator(SuperArray superArray) {
-	    this.superArray = superArray;
+	public SuperArrayIterator(MyLinkedList input) {
+	    MLL = input;
 	    element =0;
 	}
 	public String next() {
 	    if (hasNext()) {
 		element++;
-		return superArray.get(element-1);
+		return MLL.get(element-1);
 	    }
 	    else {
 		throw new NoSuchElementException();
 	    }
 	}
 	public boolean hasNext() {
-	    return element < superArray.size();
+	    return element < MLL.size();
 	}
 	public void remove() {
 	    throw new UnsupportedOperationException();
