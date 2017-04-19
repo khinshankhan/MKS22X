@@ -156,26 +156,25 @@ public class MyLinkedList implements Iterable<Integer>{
 
     public class LLIterator implements Iterator<Integer>{
 
-	private int element;
+	private LNode element;
 	private MyLinkedList MLL;
     
 	public LLIterator(MyLinkedList input) {
 	    MLL = input;
-	    element =0;
+	    element =MLL.head;
 	}
-	
+
 	public Integer next() {
-	    if (hasNext()) {
-		element++;
-		return MLL.get(element-1);
-	    }
-	    else {
+	    if(!hasNext()){
 		throw new NoSuchElementException();
 	    }
+	    Integer temp= element.value;
+	    element= element.next;
+	    return temp;
 	}
 	
 	public boolean hasNext() {
-	    return element < MLL.size();
+	    return element!=null;
 	}
 	
 	public void remove() {
