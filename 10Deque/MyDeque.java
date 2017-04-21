@@ -17,8 +17,15 @@ public class MyDeque{
     int r = sdeque.length - back; // number of elements to the right of back
     String[] temp = new String[2*(sdeque.length)];
     //NEED TO WORK THIS OUT
-    for(int i=0, li=0, ri=0; i<sdeque.length; i++){
-      if(i<)
+    for(int i=0, li=0, ri=temp.length-r; i<sdeque.length; i++){
+	if(i<back){
+	    temp[i]=sdeque[i];
+	}else{
+	    temp[ri]=sdeque[i];
+	    ri++;
+	}
+    }
+    front=temp.length-r;
     sdeque = temp;
     }
     
