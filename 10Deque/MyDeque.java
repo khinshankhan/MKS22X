@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class MyDeque{
 
     private String[] sdeque; //deque of strings
