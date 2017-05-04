@@ -13,11 +13,11 @@ public class MyHeap{
     }
     
     public MyHeap(boolean type){//min or max heap?
+	this();
 	constant = (type) ? 1 : -1;
-        MyHeap();
     }
 
-    private static int compare(String first, String other) {
+    private int compare(String first, String other) {
 	return first.compareTo(other)*constant;
     }
     
