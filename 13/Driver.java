@@ -1,7 +1,11 @@
+import java.util.*;
+
 public class Driver{
-    MyHeap test= new MyHeap(true);
-    for(int i=0; i<26; i++){
-	a.add('a'+i);
+    public static void main(String[] args){
+        MyHeap a= new MyHeap(true);
+	a.add(55+"");
+	a.add(0+"");
+	a.add(54+"");
+	System.out.println(a);
     }
-    System.out.println(a);
 }
