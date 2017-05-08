@@ -116,14 +116,6 @@ public class MyHeap{
 	String s= "";
 	int height = (int)logbase(2, size) + 1; //levels of the tree
 	System.out.println("Height: "+height);
-	//\t
-	int currentHeight=0;
-	for(int i=1; i<=height; i++){
-	    System.out.print(chStringOfSize(height-i, '\t'));
-	    double nums=Math.pow(i,currentHeight);
-	    System.out.print("TEST");
-	    System.out.println("");
-	}
     }
 
     private String chStringOfSize(int size, char ch) {
