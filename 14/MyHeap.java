@@ -6,11 +6,11 @@ public class MyHeap{
 
     private int constant;//constant determines type of heap (min or max),
     private int size;//size is because first element creates problems
-    private ArrayList<String>heap;//storage
+    private ArrayList<Integer>heap;//storage
 
     public MyHeap(){
-	heap=new ArrayList<String>();
-	heap.add("FILLER");//filler
+	heap=new ArrayList<Integer>();
+	heap.add(1447);//filler
 	size=0;
 	constant=1;
     }
@@ -20,7 +20,7 @@ public class MyHeap{
 	constant = (type) ? 1 : -1;
     }
     
-    private int compare(String first, String other) {
+    private int compare(Integer first, Integer other) {
 	return first.compareTo(other)*constant;
     }
 
@@ -42,24 +42,24 @@ public class MyHeap{
         return (compare(heap.get(rightChild(i)),heap.get(leftChild(i)))>0) ? rightChild(i) : leftChild(i);
     }
 
-    public String peek(){
+    public Integer peek(){
 	if(size==0){
 	    throw new NoSuchElementException("Deque is empty");
 	}
 	return heap.get(1);
     }
 
-    public void add(String s){
+    public void add(Integer s){
         heap.add(s);
 	size++;
 	pushUp();
     }
 
-    public String remove(){
+    public Integer remove(){
 	if(size==0){
 	    throw new NoSuchElementException("Deque is empty");
 	}
-        String temp = heap.get(1);
+        Integer temp = heap.get(1);
 	heap.set(1, heap.get(size));
 	heap.remove(size);
 	size--;
@@ -68,7 +68,7 @@ public class MyHeap{
     }
 
     private int swap(int index1, int index2){
-	String temp= heap.get(index1);
+	Integer temp= heap.get(index1);
 	heap.set(index1, heap.get(index2));
 	heap.set(index2, temp);
 	return index2;
@@ -98,31 +98,13 @@ public class MyHeap{
     
     public String toString(){
 	String s="";
-	String temp=heap.remove(0);
-	for(String x:heap)
+	Integer temp=heap.remove(0);
+	for(Integer x:heap)
 	    s+=x+" ";
 	heap.add(0,temp);
 	return s;
     }
-
-    private int logbase(int base, int val) {
-	if (val == 0){
-	    return 0;
-	}
-        return (int)(Math.log(val) / Math.log(base)); // = log(val) with base 10 / log(base) with base 10
-    }
-    
-    public void viewTree(){ //needs to be fixed
-	String s= "";
-	int height = (int)logbase(2, size) + 1; //levels of the tree
-	System.out.println("Height: "+height);
-    }
-
-    private String chStringOfSize(int size, char ch) {
-        char[] a = new char[size];
-        Arrays.fill(a, ch);
-        return new String(a);
-    }
+    //Will add tree printing when done in other file
     
 }
     
