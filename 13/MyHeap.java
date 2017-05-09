@@ -118,11 +118,25 @@ public class MyHeap{
 	System.out.println("Height: "+height);
 	//\t
 	int currentHeight=0;
+	int c=1;
+	//int spaces= 48;
 	for(int i=1; i<=height; i++){
-	    System.out.print(chStringOfSize(height-i, '\t'));
-	    double nums=Math.pow(i,currentHeight);
-	    System.out.print("TEST");
+	    s+=c;
+	    //System.out.print(chStringOfSize(height-i, '\t'));
+	    double nums=Math.pow(2,currentHeight);
+	    for(int j=0, p=c; j< nums && p<heap.size(); j++){
+		//System.out.print(chStringOfSize(height-i, '\t'));
+		System.out.print(chStringOfSize(height-i+1, '\t'));
+		//System.out.print(chStringOfSize(spaces-1, ' '));
+		//System.out.print("TEST "+nums);
+		System.out.print(heap.get(p));
+		p++;
+	    }
 	    System.out.println("");
+	    currentHeight++;
+	    c*=2;
+	    //spaces= (spaces*2)/3;
+	    //System.out.println("what c\n"+s);
 	}
     }
 
