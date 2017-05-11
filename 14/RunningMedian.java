@@ -6,11 +6,21 @@ public class RunningMedian{
 	max= new MyHeap(false);
     }
 
-    public void add(int){
-	if(n<=small.peek()){
-	    small.add(n);
+    public void add(int n){
+	boolean less;
+	try{
+	    if(n <= min.peek()){
+		less=true;
+	    }else{
+		less=false;
+	    }
+	}catch(Exception e){
+	    less=false;
+	}
+	if(less){
+	    min.add(n);
 	}else{
-	    large.add(n);
+	    max.add(n);
 	}
 	balance(); //assume works rn, procedural abstraction
     }
@@ -18,7 +28,7 @@ public class RunningMedian{
     public void balance(){//not sure about else, but w/e it'll work
 	//if(max.getSize()==min.getSize())
 	//return;
-	if(Math.abs(large.getSize()-small.getSize())> 1){//will trigger
+	if(Math.abs(max.getSize()-min.getSize())> 1){//will trigger
 	    if(max.getSize()> min.getSize()){
 		min.add(max.remove());
 	    }else{
