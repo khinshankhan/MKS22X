@@ -111,7 +111,7 @@ public class Quick{
             return dutchPartition(data, k, gt, end);
         }
     }
-    public static void quickSort(int[] data){
+    public static void quicksort(int[] data){
 	qsortH(data, 0, data.length-1);
     }
     
