@@ -1,3 +1,4 @@
+//Running median+Integer Heap Lab 14
 import java.util.*;
 
 public class Driver{
@@ -15,6 +16,7 @@ public class Driver{
     }
 
     public static void main(String [] args){
+	try{
 	int Ls=0;
 	int Ws=0;
 	RunningMedian test= new RunningMedian();
@@ -29,5 +31,9 @@ public class Driver{
 	    int extra=(median(list) == test.getMedian()) ? Ws++ : Ls++;//ternary operator for those interested
 	}
         System.out.println(String.format("Successfully ran(no errors or exceptions)! \n Failures: %s : Successes: %s", Ls, Ws));
+	}catch(Exception e){
+	    System.out.println("Something went wrong...\n");
+	    e.printStackTrace();
+	}
     }
 }
