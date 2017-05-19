@@ -13,6 +13,9 @@ public class Location implements Comparable<Location>{
     public int distToStart(){
 	return distToGoal; 
     }
+    public int priority(){
+	return priority;
+    }
 
     public Location(int r, int c, Location previous , int distToStart, int distToGoal, boolean aStar){
 	row=r;
