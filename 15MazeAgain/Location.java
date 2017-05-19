@@ -1,3 +1,4 @@
+
 public class Location implements Comparable<Location>{
     private int row, col;
     private int distToGoal;
@@ -20,7 +21,7 @@ public class Location implements Comparable<Location>{
 	this.distToStart=distToStart;
 	this.distToGoal=distToGoal;
 	this.aStar=aStar;
-	priority=(!aStar)? distToStart: distToStart+distToGoal;
+	priority=(!aStar)? distToGoal: distToStart+distToGoal;
     }
 
     public int compareTo(Location other){
