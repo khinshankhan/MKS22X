@@ -1,5 +1,11 @@
-public class FrontierStack implements Frontier{
-    public Stack<Location> values = new Stack<Location>();
+import java.util.Stack;
+
+public class StackFrontier implements Frontier{
+    private Stack<Location> values;
+
+    public StackFrontier(){
+	values = new Stack<Location>();
+    }
 	
     public void add(Location element){
 	values.push(element);
@@ -10,6 +16,6 @@ public class FrontierStack implements Frontier{
     }
 
     public boolean hasNext(){
-	return values.szie();
+	return values.size()!= 0;
     }
 }

@@ -2,20 +2,20 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Arrays;
 
-public class MyHeap{
+public class PriorityQueueFrontier implements Frontier{
 
     private int constant;//constant determines type of heap (min or max),
     private int size;//size is because first element creates problems
     private ArrayList<Location>heap;//storage
 
-    public MyHeap(){
+    public PriorityQueueFrontier(){
 	heap=new ArrayList<Location>();
-	heap.add(null);//filler
+	heap.add(new Location(0, 0, null, 0, 0));//filler
 	size=0;
 	constant=1;
     }
     
-    public MyHeap(boolean type){//min or max heap?
+    public PriorityQueueFrontier(boolean type){//min or max heap?
 	this();
 	constant = (type) ? 1 : -1;
     }
@@ -42,7 +42,7 @@ public class MyHeap{
         return (compare(heap.get(rightChild(i)),heap.get(leftChild(i)))>0) ? rightChild(i) : leftChild(i);
     }
 
-    public Location peek(){
+    private Location peek(){
 	if(size==0){
 	    throw new NoSuchElementException("Deque is empty");
 	}
@@ -55,7 +55,7 @@ public class MyHeap{
 	pushUp();
     }
 
-    public Location remove(){
+    private Location remove(){
 	if(size==0){
 	    throw new NoSuchElementException("Deque is empty");
 	}
@@ -105,6 +105,14 @@ public class MyHeap{
 	return s;
     }
     //Will add tree printing when done in other file
+
+    public boolean hasNext(){
+	return size != 0;
+    }
+
+    public Location next(){
+	return remove();
+    }
     
 }
     
