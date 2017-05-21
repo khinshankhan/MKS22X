@@ -5,11 +5,17 @@ public class Location implements Comparable<Location>{
     private boolean aStar; //type of algorithm
     private int priority; //smart priority
 
-    public int distToGoal(){
-	return distToGoal;
+    public int row(){
+	return row;
+    }
+    public int col(){
+	return col;
     }
     public int distToStart(){
 	return distToGoal; 
+    }
+    public int distToGoal(){
+	return distToGoal;
     }
     public int priority(){
 	return priority;
@@ -32,5 +38,9 @@ public class Location implements Comparable<Location>{
 
     public int compareTo(Location other){
 	return priority-other.priority();
+    }
+
+    public String toString(){
+	return row+" "+col+" "+distToStart+" "+distToGoal;
     }
 }
