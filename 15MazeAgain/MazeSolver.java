@@ -27,10 +27,10 @@ public class MazeSolver{
 	    break;
 	case 2: storage = new PriorityQueueFrontier(false);
 	    break;
-	case 3: storage = new PriorityQueueFrontier(true);
+	case 3: storage = new PriorityQueueFrontier(false);
 	    aStar = true;
 	    break;
-	default: storage = new PriorityQueueFrontier(); //wasnt sure about 4?
+	default: storage = new PriorityQueueFrontier(false); //wasnt sure about 4?
 	    aStar = true;
 	    break;
 	}
@@ -57,7 +57,7 @@ public class MazeSolver{
 		    if (maze.get(r, c) == ' '){
 			int startDist= Math.abs(sr- r)+ Math.abs(sc- c);
 			int endDist= Math.abs(er- r)+ Math.abs(ec- c);
-			storage.add(new Location(r, c, current, startDist, endDist));
+			storage.add(new Location(r, c, current, startDist, endDist, aStar));
 			maze.set(r , c, '?');
                     }
 		}catch (IndexOutOfBoundsException e){}
