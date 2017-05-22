@@ -17,7 +17,7 @@ public class MazeSolver{
     }
 
     public void solve(int i) {
-	System.out.println(Maze.colorize(maze.toString()));
+	System.out.println(this.toString());
         Frontier storage;
 	boolean aStar= false;
 	switch(i){ //choosing structure
@@ -46,6 +46,12 @@ public class MazeSolver{
 	    int dist= Math.abs(er- row)+ Math.abs(ec- col);
 	    if(dist == 0){
 		maze.set(er, ec, 'E');
+		while(current != maze.getStart()){
+		    current= current.previous();
+		    maze.set(current.row(), current.col(), '@');
+		    System.out.println(this.toString());
+		}
+		maze.set(sr, sc, 'S');
 		System.out.println(this.toString());
 		return;
 	    }
