@@ -1,10 +1,12 @@
+import java.util.*;
+
 public class MyDeque{
 
     private String[] sdeque; //deque of strings
     private int front, back, size;
     
     public MyDeque(){
-        sdeque= new String[10];
+        sdeque= new String[5];
         front= back= size= 0;
     }
     
@@ -22,7 +24,7 @@ public class MyDeque{
 		ri++;
 	    }
 	}
-	front=temp.length-r;
+	front=temp.length-r-1;
 	sdeque = temp;
     }
     
@@ -140,4 +142,13 @@ public class MyDeque{
 	}   
 	return sdeque[realBack];
     }
+    /*
+    public String toString(){
+	String s= "";
+	for(String x : sdeque)
+	    s+=x+",";
+	//System.out.println(front+","+back+","+size);
+	return s;
+    }
+    */
 }
