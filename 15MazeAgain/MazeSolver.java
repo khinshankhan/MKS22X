@@ -17,7 +17,7 @@ public class MazeSolver{
     }
 
     public void solve(int i) {
-	System.out.println(this.toString());
+        printer();
         Frontier storage;
 	boolean aStar= false;
 	switch(i){ //choosing structure
@@ -49,10 +49,10 @@ public class MazeSolver{
 		while(current != maze.getStart()){
 		    current= current.previous();
 		    maze.set(current.row(), current.col(), '@');
-		    System.out.println(this.toString());
+		    printer();
 		}
 		maze.set(sr, sc, 'S');
-		System.out.println(this.toString());
+	        printer();
 		return;
 	    }
 	    int moved = 0;
@@ -70,7 +70,7 @@ public class MazeSolver{
 	    }
 	    char setter= (moved==0) ? '.' : '@';
 	    maze.set(row, col, setter);
-	    System.out.println(this.toString());
+	    printer();
 	}
     }
 
@@ -79,6 +79,11 @@ public class MazeSolver{
 	    return maze.toString(100);
 	}
 	return maze.toString();
+    }
+    public void printer(){
+	if(animation){
+	    System.out.println(this.toString());
+	}
     }
 }
 

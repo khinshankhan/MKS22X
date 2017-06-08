@@ -1,3 +1,4 @@
+//lab 15
 public class Driver{
     private static final String CLEAR_SCREEN =  "\033[2J";
     private static final String HIDE_CURSOR =  "\033[?25l";
@@ -33,5 +34,29 @@ public class Driver{
 	wait(500);
 	m = new MazeSolver(a, true);
 	m.solve(3);
+	///////////////////////////////////////
+	/*
+	  m = new MazeSolver(a);
+	  System.out.println(CLEAR_SCREEN);
+	  System.out.println("DFS\n");
+	  wait(500);
+	  m.solve(0);
+	  System.out.println(CLEAR_SCREEN);
+	  System.out.println("BFS\n");
+	  wait(500);
+	  m = new MazeSolver(a);
+	  m.solve(1);
+	  System.out.println(CLEAR_SCREEN);
+	  System.out.println("Best First\n");
+	  wait(500);
+	  m = new MazeSolver(a, false);
+	  m.solve(2);
+	  System.out.println(CLEAR_SCREEN);
+	  System.out.println("A*\n");
+	  wait(500);
+	  m = new MazeSolver(a);
+	  m.solve(3);
+	  System.out.println(m);
+	*/
     }
 }
